@@ -1,5 +1,7 @@
 ﻿Module dTable
-
+    '===================================================================================      
+    '                === Create datatable ===
+    '===================================================================================
     Sub create_datatable(_rCount As Integer, _colCount As Integer, _rng As Object, _dt As DataTable, _dtName As String)
         Dim i, j As Integer
         Dim row As DataRow
@@ -95,7 +97,9 @@
         End Select
 
     End Sub
-
+    '===================================================================================      
+    '                === Format DataGridView ===
+    '===================================================================================
 
     Sub DGV_format(_dtName As String)
 
@@ -125,7 +129,7 @@
 
                 For i = 0 To mainForm.rCountIN - 2
                     'mainForm.DGV_in.Rows(i).Cells(1).Value = Date.FromOADate(mainForm.DGV_in.Rows(i).Cells(1).Value)
-                    mainForm.DGV_in.RowsDefaultCellStyle.BackColor = Color.LightGray
+                    mainForm.DGV_in.RowsDefaultCellStyle.BackColor = Color.Honeydew
                     mainForm.DGV_in.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(250, 250, 250)
                 Next i
 
@@ -155,12 +159,8 @@
 
                 For i = 0 To mainForm.rCountOUT - 2
                     'mainForm.DGV_out.Rows(i).Cells(1).Value = Date.FromOADate(mainForm.DGV_out.Rows(i).Cells(1).Value)
-                    If (i Mod 2 = 0) Then
-                        mainForm.DGV_out.Rows(i).DefaultCellStyle.BackColor = Color.FromArgb(220, 220, 220)
-                    Else
-                        mainForm.DGV_out.Rows(i).DefaultCellStyle.BackColor = Color.FromArgb(250, 250, 250)
-                    End If
-
+                    mainForm.DGV_out.RowsDefaultCellStyle.BackColor = Color.MistyRose
+                    mainForm.DGV_out.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(250, 250, 250)
                 Next i
 
             Case "dtStore"
@@ -189,15 +189,54 @@
 
                 For i = 0 To mainForm.rCountStore - 2
                     'mainForm.DGV_store.Rows(i).Cells(1).Value = Date.FromOADate(mainForm.DGV_store.Rows(i).Cells(1).Value)
-                    If (i Mod 2 = 0) Then
-                        mainForm.DGV_store.Rows(i).DefaultCellStyle.BackColor = Color.FromArgb(220, 220, 220)
-                    Else
-                        mainForm.DGV_store.Rows(i).DefaultCellStyle.BackColor = Color.FromArgb(250, 250, 250)
-                    End If
-
+                    mainForm.DGV_store.RowsDefaultCellStyle.BackColor = Color.Gainsboro
+                    mainForm.DGV_store.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(250, 250, 250)
                 Next i
 
         End Select
 
     End Sub
+    '===================================================================================      
+    '                === CellClick on DGV ===
+    '===================================================================================
+    Sub dgv_cellClick(_sender As Object, _e As DataGridViewCellEventArgs)
+
+        Dim index As Integer
+        index = _e.RowIndex
+
+        Dim selectedRow As DataGridViewRow
+        selectedRow = _sender.Rows(index)
+        mainForm.selectedPage = mainForm.tabcontrol.SelectedIndex
+
+        Select Case mainForm.selectedPage
+
+            Case 2
+
+                mainForm.numRecord_txt.Text = selectedRow.Cells(0).Value.ToString
+                mainForm.DTP.Text = selectedRow.Cells(1).Value.ToString
+                mainForm.idLamp_txt.Text = selectedRow.Cells(2).Value.ToString
+                mainForm.lampName_cmb.Text = selectedRow.Cells(3).Value.ToString
+                mainForm.location_cmb.Text = selectedRow.Cells(4).Value.ToString
+                mainForm.qty_txt.Text = selectedRow.Cells(5).Value.ToString
+                mainForm.fxt_cmb.Text = selectedRow.Cells(6).Value.ToString
+                mainForm.notes1_txt.Text = selectedRow.Cells(7).Value.ToString
+                mainForm.notes2_txt.Text = selectedRow.Cells(8).Value.ToString
+
+            Case 3
+
+                mainForm.numRecord_txt.Text = selectedRow.Cells(0).Value.ToString
+                mainForm.DTP.Text = selectedRow.Cells(1).Value.ToString
+                mainForm.idLamp_txt.Text = selectedRow.Cells(2).Value.ToString
+                mainForm.lampName_cmb.Text = selectedRow.Cells(3).Value.ToString
+                mainForm.location_cmb.Text = selectedRow.Cells(4).Value.ToString
+                mainForm.qty_txt.Text = selectedRow.Cells(5).Value.ToString
+                mainForm.fxt_cmb.Text = selectedRow.Cells(6).Value.ToString
+                mainForm.pers_cmb.Text = selectedRow.Cells(7).Value.ToString
+                mainForm.notes1_txt.Text = selectedRow.Cells(8).Value.ToString
+                mainForm.notes2_txt.Text = selectedRow.Cells(9).Value.ToString
+
+        End Select
+
+    End Sub
+
 End Module

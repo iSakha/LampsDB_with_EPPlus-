@@ -65,7 +65,7 @@
         Dim dt As DataTable
         dt = mainForm.dtStore
         index = _control_1.SelectedIndex
-        qty = _datatable.Rows(index).Item(_colCount - 1)
+        qty = _datatable.Rows(index).Item(_colCount - 2)
         'MsgBox(qty)
         _control_2.Items.Clear()
         For i = 1 To qty
@@ -75,10 +75,124 @@
                 _control_2.Items.Add(_datatable.Rows(index).Item(i))
             End If
         Next
-        _control_2.Text = _datatable.Rows(index).Item(i - 1).ToString
-        _IDtxt.Text = dt.Rows(index - 1).Item(2)
+
+        Try
+            _control_2.Text = _datatable.Rows(index).Item(i - 1).ToString
+            _IDtxt.Text = dt.Rows(index - 1).Item(2)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    '===================================================================================
+    '             === ADD data to DB ===
+    '===================================================================================
+    Sub addData(_dt As DataTable, _dgv As DataGridView, _selectedPage As Integer)
+
+        Dim rCount As Integer
+        Dim sRow() As String
+        rCount = _dt.Rows.Count
+        mainForm.numRecord_txt.Text = _dgv.Rows(rCount - 1).Cells(0).Value + 1
+
+        Select Case _selectedPage
+            Case 2
+
+                sRow = New String() {
+                mainForm.numRecord_txt.Text,
+                mainForm.DTP.Text,
+                mainForm.idLamp_txt.Text,
+                mainForm.lampName_cmb.Text,
+                mainForm.location_cmb.Text,
+                mainForm.qty_txt.Text,
+                mainForm.fxt_cmb.Text,
+                mainForm.notes1_txt.Text,
+                mainForm.notes2_txt.Text
+            }
+
+            Case 3
+
+                sRow = New String() {
+                mainForm.numRecord_txt.Text,
+                mainForm.DTP.Text,
+                mainForm.idLamp_txt.Text,
+                mainForm.lampName_cmb.Text,
+                mainForm.location_cmb.Text,
+                mainForm.qty_txt.Text,
+                mainForm.fxt_cmb.Text,
+                mainForm.pers_cmb.Text,
+                mainForm.notes1_txt.Text,
+                mainForm.notes2_txt.Text
+            }
+
+        End Select
+
+        Dim row As DataRow
+
+        row = _dt.Rows.Add()
+
+        For i As Integer = 0 To sRow.Count - 1
+            row.Item(i) = sRow(i)
+        Next i
+
+        _dgv.DataSource = _dt
+
+
 
     End Sub
 
+    '===================================================================================
+    '             === UPDATE data in DB ===
+    '===================================================================================
 
+    Sub updateData(_dt As DataTable, _dgv As DataGridView, _selectedPage As Integer, _index As Integer)
+        Dim row As DataRow
+        row = _dt.Rows(_index)
+        Dim sRow() As String
+
+        Select Case _selectedPage
+            Case 2
+
+                sRow = New String() {
+                mainForm.numRecord_txt.Text,
+                mainForm.DTP.Text,
+                mainForm.idLamp_txt.Text,
+                mainForm.lampName_cmb.Text,
+                mainForm.location_cmb.Text,
+                mainForm.qty_txt.Text,
+                mainForm.fxt_cmb.Text,
+                mainForm.notes1_txt.Text,
+                mainForm.notes2_txt.Text
+            }
+
+            Case 3
+
+                sRow = New String() {
+                mainForm.numRecord_txt.Text,
+                mainForm.DTP.Text,
+                mainForm.idLamp_txt.Text,
+                mainForm.lampName_cmb.Text,
+                mainForm.location_cmb.Text,
+                mainForm.qty_txt.Text,
+                mainForm.fxt_cmb.Text,
+                mainForm.pers_cmb.Text,
+                mainForm.notes1_txt.Text,
+                mainForm.notes2_txt.Text
+            }
+
+        End Select
+
+        For Each column As DataGridViewColumn In _dgv.Columns
+            row.Item(column.Index) = sRow(column.Index)
+        Next
+        _dgv.DataSource = _dt
+    End Sub
+
+    '===================================================================================
+    '             === DELETE data from DB ===
+    '===================================================================================
+
+    Sub deleteData(_dt As DataTable, _dgv As DataGridView, _selectedPage As Integer, _index As Integer)
+        Dim rowCollection As DataRowCollection = _dt.Rows
+        rowCollection.RemoveAt(_index)
+        _dgv.DataSource = _dt
+    End Sub
 End Module

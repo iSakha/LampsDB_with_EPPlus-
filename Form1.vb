@@ -261,15 +261,17 @@ Public Class mainForm
             If (fxt_cmb.SelectedIndex = 0) Then
                 addItemsToCombobox(lampName_cmb, rCountlampToFixture, dtlampToFixture)
             End If
+
+            If (lampName_cmb.Items.Count > 1) Then
+                idLamp_txt.Text = ""
+                idLamp_txt.BackColor = Color.LightPink
+                lampName_cmb.Text = ""
+                lampName_cmb.BackColor = Color.LightPink
+                MsgBox("Select lamp!")
+            End If
+
         End If
 
-        If (lampName_cmb.Items.Count > 1) Then
-            idLamp_txt.Text = ""
-            idLamp_txt.BackColor = Color.LightPink
-            lampName_cmb.Text = ""
-            lampName_cmb.BackColor = Color.LightPink
-            MsgBox("Select lamp!")
-        End If
         lampName_cmb.Enabled = True
     End Sub
     '===================================================================================
@@ -293,5 +295,73 @@ Public Class mainForm
         idLamp_txt.Text = ""
         lampName_cmb.Enabled = True
     End Sub
+
+    '===================================================================================
+    '             === CellClick on DGV ===
+    '===================================================================================
+
+    Private Sub DGV_in_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGV_in.CellClick
+        dgv_cellClick(sender, e)
+    End Sub
+
+    Private Sub DGV_out_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGV_out.CellClick
+        dgv_cellClick(sender, e)
+    End Sub
+
+    '===================================================================================
+    '             === ADD data to DB ===
+    '===================================================================================
+    Private Sub Add_btn_Click(sender As Object, e As EventArgs) Handles Add_btn.Click
+
+        selectedPage = tabcontrol.SelectedIndex
+        Select Case selectedPage
+            Case 2
+                addData(dtIN, DGV_in, selectedPage)
+            Case 3
+                addData(dtOUT, DGV_out, selectedPage)
+        End Select
+        Save_btn.FlatStyle = FlatStyle.Flat
+    End Sub
+    '===================================================================================
+    '             === UPDATE data in DB ===
+    '===================================================================================
+    Private Sub Update_btn_Click(sender As Object, e As EventArgs) Handles Update_btn.Click
+        Dim index As Integer
+        selectedPage = tabcontrol.SelectedIndex
+        Select Case selectedPage
+            Case 2
+                index = DGV_in.CurrentRow.Index
+                updateData(dtIN, DGV_in, selectedPage, index)
+            Case 3
+                index = DGV_out.CurrentRow.Index
+                updateData(dtOUT, DGV_out, selectedPage, index)
+        End Select
+        Save_btn.FlatStyle = FlatStyle.Flat
+    End Sub
+    '===================================================================================
+    '             === DELETE data from DB ===
+    '===================================================================================
+    Private Sub Delete_btn_Click(sender As Object, e As EventArgs) Handles Delete_btn.Click
+        Dim index As Integer
+        selectedPage = tabcontrol.SelectedIndex
+        Select Case selectedPage
+            Case 2
+                index = DGV_in.CurrentRow.Index
+                deleteData(dtIN, DGV_in, selectedPage, index)
+            Case 3
+                index = DGV_out.CurrentRow.Index
+                deleteData(dtOUT, DGV_out, selectedPage, index)
+        End Select
+        Save_btn.FlatStyle = FlatStyle.Flat
+    End Sub
+    '===================================================================================
+    '             === SAVE data to DB ===
+    '===================================================================================
+    Private Sub Save_btn_Click(sender As Object, e As EventArgs) Handles Save_btn.Click
+        Save_btn.FlatStyle = FlatStyle.Standard
+    End Sub
+
+
+
 
 End Class
