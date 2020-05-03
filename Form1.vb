@@ -243,7 +243,7 @@ Public Class mainForm
 
         If (RadioButton1.Checked) Then
 
-            selectLamp_Or_Fixture(lampName_cmb, fxt_cmb, colCountlampToFixture, dtlampToFixture, idLamp_txt)
+            selectLamp_Or_Fixture(lampName_cmb, fxt_cmb, colCountlampToFixture, dtlampToFixture)
 
             If (lampName_cmb.SelectedIndex = 0) Then
                 addItemsToCombobox(fxt_cmb, rCountfxtToLamp, dtfxtToLamp)
@@ -256,12 +256,12 @@ Public Class mainForm
     '===================================================================================
     Private Sub fxt_cmb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles fxt_cmb.SelectedIndexChanged
         If (RadioButton2.Checked) Then
-            selectLamp_Or_Fixture(fxt_cmb, lampName_cmb, colCountfxtToLamp, dtfxtToLamp, idLamp_txt)
+            selectLamp_Or_Fixture(fxt_cmb, lampName_cmb, colCountfxtToLamp, dtfxtToLamp)
 
             If (fxt_cmb.SelectedIndex = 0) Then
                 addItemsToCombobox(lampName_cmb, rCountlampToFixture, dtlampToFixture)
             End If
-
+            ' In case if fixture has can use than one lamp (Sharpy in this case)
             If (lampName_cmb.Items.Count > 1) Then
                 idLamp_txt.Text = ""
                 idLamp_txt.BackColor = Color.LightPink
@@ -358,7 +358,89 @@ Public Class mainForm
     '             === SAVE data to DB ===
     '===================================================================================
     Private Sub Save_btn_Click(sender As Object, e As EventArgs) Handles Save_btn.Click
+
+        Dim foundRowsPos() As DataRow
+        Dim foundRowsNeg() As DataRow
+        Dim currentIDLamp As String = idLamp_txt.Text
+        Dim qty, qty_pos, qty_neg As Integer
+
+        Dim copy_dtIN, copy_dtOUT As DataTable
+
+        copy_dtIN = dtIN.Clone
+        copy_dtOUT = dtOUT.Clone
+
+        copy_dtIN.Clear()
+        foundRowsPos = dtIN.Select("ID_Lamp = " & "'" & currentIDLamp & "'")
+
+        'Console.WriteLine(foundRowsPos.Length)
+
+        copy_dtOUT.Clear()
+        foundRowsNeg = dtOUT.Select("ID_Lamp = " & "'" & currentIDLamp & "'")
+
+        For i = 0 To foundRowsPos.Length - 1
+            copy_dtIN.ImportRow(foundRowsPos(i))
+            'foundRows(i).Delete()
+        Next i
+
+        For i = 0 To foundRowsNeg.Length - 1
+            copy_dtOUT.ImportRow(foundRowsNeg(i))
+            'foundRows(i).Delete()
+        Next i
+
+        DGV_in.DataSource = copy_dtIN
+        DGV_out.DataSource = copy_dtOUT
+
+        qty = 0
+        qty_pos = 0
+        qty_neg = 0
+
+        For i = 0 To foundRowsPos.Length - 1
+            'Console.WriteLine(foundRowsPos(i).Item(5))
+            qty_pos = qty_pos + foundRowsPos(i).Item(5)
+        Next i
+
+        Console.WriteLine(qty_pos)
+
+        For i = 0 To foundRowsNeg.Length - 1
+            qty_neg = qty_neg + foundRowsNeg(i).Item(5)
+        Next i
+
+        Console.WriteLine(qty_neg)
+
+        qty = qty_pos - qty_neg
+
+        Console.WriteLine(qty)
+
         Save_btn.FlatStyle = FlatStyle.Standard
+
+    End Sub
+    '===================================================================================
+    '             === FILTER data in DB ===
+    '===================================================================================
+    Private Sub filterIN_btn_Click(sender As Object, e As EventArgs) Handles filterIN_btn.Click
+        filterData(dtIN, DGV_in)
+    End Sub
+
+    Private Sub filterOUT_btn_Click(sender As Object, e As EventArgs) Handles filterOUT_btn.Click
+        filterData(dtOUT, DGV_out)
+    End Sub
+    Private Sub filterStore_btn_Click(sender As Object, e As EventArgs) Handles filterStore_btn.Click
+
+    End Sub
+    '===================================================================================
+    '             === CLEAR FILTER data in DB ===
+    '===================================================================================
+
+    Private Sub clrFilterIN_btn_Click(sender As Object, e As EventArgs) Handles clrFilterIN_btn.Click
+        DGV_in.DataSource = dtIN
+    End Sub
+
+    Private Sub clrFilterOUT_btn_Click(sender As Object, e As EventArgs) Handles clrFilterOUT_btn.Click
+        DGV_out.DataSource = dtOUT
+    End Sub
+
+    Private Sub clrFilterStore_brn_Click(sender As Object, e As EventArgs) Handles clrFilterStore_brn.Click
+
     End Sub
 
 

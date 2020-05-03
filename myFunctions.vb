@@ -60,11 +60,13 @@
     '===================================================================================      
     '                === Select Lamp or Fixture ===
     '===================================================================================
-    Sub selectLamp_Or_Fixture(_control_1 As Object, _control_2 As Object, _colCount As Integer, _datatable As DataTable, _IDtxt As Object)
+    Sub selectLamp_Or_Fixture(_control_1 As Object, _control_2 As Object, _colCount As Integer, _datatable As DataTable)
+
         Dim index, i, qty As Integer
         Dim dt As DataTable
         dt = mainForm.dtStore
         index = _control_1.SelectedIndex
+        Console.WriteLine(_datatable.Rows(index).Item(_colCount - 2))
         qty = _datatable.Rows(index).Item(_colCount - 2)
         'MsgBox(qty)
         _control_2.Items.Clear()
@@ -78,7 +80,7 @@
 
         Try
             _control_2.Text = _datatable.Rows(index).Item(i - 1).ToString
-            _IDtxt.Text = dt.Rows(index - 1).Item(2)
+            mainForm.idLamp_txt.Text = dt.Rows(index - 1).Item(2)
         Catch ex As Exception
 
         End Try
@@ -195,4 +197,26 @@
         rowCollection.RemoveAt(_index)
         _dgv.DataSource = _dt
     End Sub
+
+    '===================================================================================
+    '             === FILTER data in DB ===
+    '===================================================================================
+    Sub filterData(_dt As DataTable, _DGV As DataGridView)
+
+        Dim foundRows() As DataRow
+        Dim currentIDLamp As String = mainForm.idLamp_txt.Text
+        Dim copy_dt As DataTable
+
+        copy_dt = _dt.Clone
+        copy_dt.Clear()
+        foundRows = _dt.Select("ID_Lamp = " & "'" & currentIDLamp & "'")
+
+        For i = 0 To foundRows.Length - 1
+            copy_dt.ImportRow(foundRows(i))
+        Next i
+
+        _DGV.DataSource = copy_dt
+
+    End Sub
+
 End Module

@@ -119,13 +119,13 @@
 
                 mainForm.DGV_in.Columns(0).HeaderText = "#"
                 mainForm.DGV_in.Columns(1).HeaderText = "Date"
-                mainForm.DGV_in.Columns(2).HeaderText = "ID Lamp"
+                mainForm.DGV_in.Columns(2).HeaderText = "ID_Lamp"
                 mainForm.DGV_in.Columns(3).HeaderText = "Name"
                 mainForm.DGV_in.Columns(4).HeaderText = "Location"
                 mainForm.DGV_in.Columns(5).HeaderText = "Quantity"
                 mainForm.DGV_in.Columns(6).HeaderText = "Fixture"
-                mainForm.DGV_in.Columns(7).HeaderText = "Notes 1"
-                mainForm.DGV_in.Columns(8).HeaderText = "Notes 2"
+                mainForm.DGV_in.Columns(7).HeaderText = "Notes_1"
+                mainForm.DGV_in.Columns(8).HeaderText = "Notes_2"
 
                 For i = 0 To mainForm.rCountIN - 2
                     'mainForm.DGV_in.Rows(i).Cells(1).Value = Date.FromOADate(mainForm.DGV_in.Rows(i).Cells(1).Value)
@@ -148,14 +148,14 @@
 
                 mainForm.DGV_out.Columns(0).HeaderText = "#"
                 mainForm.DGV_out.Columns(1).HeaderText = "Date"
-                mainForm.DGV_out.Columns(2).HeaderText = "ID Lamp"
+                mainForm.DGV_out.Columns(2).HeaderText = "ID_Lamp"
                 mainForm.DGV_out.Columns(3).HeaderText = "Name"
                 mainForm.DGV_out.Columns(4).HeaderText = "Location"
                 mainForm.DGV_out.Columns(5).HeaderText = "Quantity"
                 mainForm.DGV_out.Columns(6).HeaderText = "Fixture"
                 mainForm.DGV_out.Columns(7).HeaderText = "Personnel"
-                mainForm.DGV_out.Columns(8).HeaderText = "Notes 1"
-                mainForm.DGV_out.Columns(9).HeaderText = "Notes 2"
+                mainForm.DGV_out.Columns(8).HeaderText = "Notes_1"
+                mainForm.DGV_out.Columns(9).HeaderText = "Notes_2"
 
                 For i = 0 To mainForm.rCountOUT - 2
                     'mainForm.DGV_out.Rows(i).Cells(1).Value = Date.FromOADate(mainForm.DGV_out.Rows(i).Cells(1).Value)
@@ -178,7 +178,7 @@
 
                 mainForm.DGV_store.Columns(0).HeaderText = "Name"
                 mainForm.DGV_store.Columns(1).HeaderText = "PartNumber"
-                mainForm.DGV_store.Columns(2).HeaderText = "ID Lamp"
+                mainForm.DGV_store.Columns(2).HeaderText = "ID_Lamp"
                 mainForm.DGV_store.Columns(3).HeaderText = "Fixture"
                 mainForm.DGV_store.Columns(4).HeaderText = "LifeTime"
                 mainForm.DGV_store.Columns(5).HeaderText = "Power"
