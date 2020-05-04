@@ -75,6 +75,7 @@ Public Class mainForm
                                   My.Resources._21}
 
         PictureBox1.Visible = False
+        Label1.Visible = False
 
     End Sub
     '===================================================================================      
@@ -277,8 +278,22 @@ Public Class mainForm
 
         End If
         PictureBox1.Visible = True
-        PictureBox1.Image = lampImg(lampName_cmb.SelectedIndex - 1)
+        Label1.Visible = True
 
+        Try
+            PictureBox1.Image = lampImg(lampName_cmb.SelectedIndex - 1)
+        Catch
+        End Try
+
+        Try
+            lampName_lbl.Text = lampName_cmb.SelectedItem
+            qty_lbl.Text = dtStore.Rows(lampName_cmb.SelectedIndex - 1).Item(8)
+            location_lbl.Text = dtStore.Rows(lampName_cmb.SelectedIndex - 1).Item(9)
+            power_lbl.Text = dtStore.Rows(lampName_cmb.SelectedIndex - 1).Item(5)
+            lifetime_lbl.Text = dtStore.Rows(lampName_cmb.SelectedIndex - 1).Item(4)
+        Catch
+            lifetime_lbl.Text = ""
+        End Try
     End Sub
     '===================================================================================
     '               === Change FIXTURE selection ===
@@ -458,7 +473,7 @@ Public Class mainForm
 
     End Sub
     '===================================================================================
-    '             === Run Image form ===
+    '             === Run Image Form ===
     '===================================================================================
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
 
@@ -467,16 +482,5 @@ Public Class mainForm
 
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        PictureBox1.Image = lampImg(4)
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        PictureBox1.Image = lampImg(8)
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        PictureBox1.Image = lampImg(12)
-    End Sub
 
 End Class
