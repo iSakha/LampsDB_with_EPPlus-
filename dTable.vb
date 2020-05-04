@@ -210,6 +210,19 @@
 
         Select Case mainForm.selectedPage
 
+            Case 1
+
+                mainForm.numRecord_txt.Text = ""
+                mainForm.DTP.Text = ""
+                mainForm.idLamp_txt.Text = selectedRow.Cells(2).Value.ToString
+                mainForm.lampName_cmb.Text = selectedRow.Cells(0).Value.ToString
+                mainForm.location_cmb.Text = selectedRow.Cells(9).Value.ToString
+                mainForm.qty_txt.Text = ""
+                mainForm.fxt_cmb.Text = selectedRow.Cells(3).Value.ToString
+                mainForm.pers_cmb.Text = ""
+                mainForm.notes1_txt.Text = ""
+                mainForm.notes2_txt.Text = ""
+
             Case 2
 
                 mainForm.numRecord_txt.Text = selectedRow.Cells(0).Value.ToString
@@ -219,6 +232,7 @@
                 mainForm.location_cmb.Text = selectedRow.Cells(4).Value.ToString
                 mainForm.qty_txt.Text = selectedRow.Cells(5).Value.ToString
                 mainForm.fxt_cmb.Text = selectedRow.Cells(6).Value.ToString
+                mainForm.pers_cmb.Text = ""
                 mainForm.notes1_txt.Text = selectedRow.Cells(7).Value.ToString
                 mainForm.notes2_txt.Text = selectedRow.Cells(8).Value.ToString
 

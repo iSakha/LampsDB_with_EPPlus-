@@ -32,12 +32,15 @@ Partial Class mainForm
         Me.selectStore_btn = New System.Windows.Forms.Button()
         Me.loadBase_btn = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.filterStore_btn = New System.Windows.Forms.Button()
         Me.clrFilterStore_brn = New System.Windows.Forms.Button()
         Me.DGV_store = New System.Windows.Forms.DataGridView()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.filterIN_btn = New System.Windows.Forms.Button()
         Me.clrFilterIN_btn = New System.Windows.Forms.Button()
         Me.DGV_in = New System.Windows.Forms.DataGridView()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.filterOUT_btn = New System.Windows.Forms.Button()
         Me.clrFilterOUT_btn = New System.Windows.Forms.Button()
         Me.DGV_out = New System.Windows.Forms.DataGridView()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
@@ -74,9 +77,10 @@ Partial Class mainForm
         Me.Label17 = New System.Windows.Forms.Label()
         Me.prev_btn = New System.Windows.Forms.Button()
         Me.next_btn = New System.Windows.Forms.Button()
-        Me.filterStore_btn = New System.Windows.Forms.Button()
-        Me.filterIN_btn = New System.Windows.Forms.Button()
-        Me.filterOUT_btn = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.tabcontrol.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -88,6 +92,7 @@ Partial Class mainForm
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tabcontrol
@@ -212,6 +217,10 @@ Partial Class mainForm
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.Button3)
+        Me.TabPage2.Controls.Add(Me.Button2)
+        Me.TabPage2.Controls.Add(Me.Button1)
+        Me.TabPage2.Controls.Add(Me.PictureBox1)
         Me.TabPage2.Controls.Add(Me.filterStore_btn)
         Me.TabPage2.Controls.Add(Me.clrFilterStore_brn)
         Me.TabPage2.Controls.Add(Me.DGV_store)
@@ -220,8 +229,17 @@ Partial Class mainForm
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage2.Size = New System.Drawing.Size(1166, 658)
         Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Main"
+        Me.TabPage2.Text = "Store"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'filterStore_btn
+        '
+        Me.filterStore_btn.Location = New System.Drawing.Point(104, 583)
+        Me.filterStore_btn.Name = "filterStore_btn"
+        Me.filterStore_btn.Size = New System.Drawing.Size(75, 23)
+        Me.filterStore_btn.TabIndex = 3
+        Me.filterStore_btn.Text = "Filter"
+        Me.filterStore_btn.UseVisualStyleBackColor = True
         '
         'clrFilterStore_brn
         '
@@ -252,6 +270,15 @@ Partial Class mainForm
         Me.TabPage3.Text = "IN"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
+        'filterIN_btn
+        '
+        Me.filterIN_btn.Location = New System.Drawing.Point(104, 583)
+        Me.filterIN_btn.Name = "filterIN_btn"
+        Me.filterIN_btn.Size = New System.Drawing.Size(75, 23)
+        Me.filterIN_btn.TabIndex = 2
+        Me.filterIN_btn.Text = "Filter"
+        Me.filterIN_btn.UseVisualStyleBackColor = True
+        '
         'clrFilterIN_btn
         '
         Me.clrFilterIN_btn.Location = New System.Drawing.Point(23, 583)
@@ -281,6 +308,15 @@ Partial Class mainForm
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "OUT"
         Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'filterOUT_btn
+        '
+        Me.filterOUT_btn.Location = New System.Drawing.Point(104, 583)
+        Me.filterOUT_btn.Name = "filterOUT_btn"
+        Me.filterOUT_btn.Size = New System.Drawing.Size(75, 23)
+        Me.filterOUT_btn.TabIndex = 3
+        Me.filterOUT_btn.Text = "Filter"
+        Me.filterOUT_btn.UseVisualStyleBackColor = True
         '
         'clrFilterOUT_btn
         '
@@ -632,32 +668,42 @@ Partial Class mainForm
         Me.next_btn.Text = ">>>"
         Me.next_btn.UseVisualStyleBackColor = True
         '
-        'filterStore_btn
+        'Button1
         '
-        Me.filterStore_btn.Location = New System.Drawing.Point(104, 583)
-        Me.filterStore_btn.Name = "filterStore_btn"
-        Me.filterStore_btn.Size = New System.Drawing.Size(75, 23)
-        Me.filterStore_btn.TabIndex = 3
-        Me.filterStore_btn.Text = "Filter"
-        Me.filterStore_btn.UseVisualStyleBackColor = True
+        Me.Button1.Location = New System.Drawing.Point(357, 561)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 5
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
         '
-        'filterIN_btn
+        'Button2
         '
-        Me.filterIN_btn.Location = New System.Drawing.Point(104, 583)
-        Me.filterIN_btn.Name = "filterIN_btn"
-        Me.filterIN_btn.Size = New System.Drawing.Size(75, 23)
-        Me.filterIN_btn.TabIndex = 2
-        Me.filterIN_btn.Text = "Filter"
-        Me.filterIN_btn.UseVisualStyleBackColor = True
+        Me.Button2.Location = New System.Drawing.Point(357, 591)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 6
+        Me.Button2.Text = "Button2"
+        Me.Button2.UseVisualStyleBackColor = True
         '
-        'filterOUT_btn
+        'Button3
         '
-        Me.filterOUT_btn.Location = New System.Drawing.Point(104, 583)
-        Me.filterOUT_btn.Name = "filterOUT_btn"
-        Me.filterOUT_btn.Size = New System.Drawing.Size(75, 23)
-        Me.filterOUT_btn.TabIndex = 3
-        Me.filterOUT_btn.Text = "Filter"
-        Me.filterOUT_btn.UseVisualStyleBackColor = True
+        Me.Button3.Location = New System.Drawing.Point(357, 621)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.TabIndex = 7
+        Me.Button3.Text = "Button3"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.LampDB_new.My.Resources.Resources._4
+        Me.PictureBox1.Location = New System.Drawing.Point(203, 541)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(124, 111)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 4
+        Me.PictureBox1.TabStop = False
         '
         'mainForm
         '
@@ -683,6 +729,7 @@ Partial Class mainForm
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -742,4 +789,8 @@ Partial Class mainForm
     Friend WithEvents filterStore_btn As Button
     Friend WithEvents filterIN_btn As Button
     Friend WithEvents filterOUT_btn As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button1 As Button
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

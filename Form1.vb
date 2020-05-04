@@ -28,8 +28,6 @@ Public Class mainForm
     Public rCountStore, rCountlampToFixture, rCountfxtToLamp As Integer
     Public rCountLamps, rCountPersonnel, rCountLocation As Integer
 
-
-
     Public colCountIN, colCountOUT, colCountfxtToLamp As Integer
     Public colCountStore, colCountlampToFixture As Integer
     Public colCountLamps, colCountPersonnel, colCountLocation As Integer
@@ -46,11 +44,39 @@ Public Class mainForm
 
     Public excelObj, excelFileObj As Object         '   Global vars to use in function "Save"
     Public excelObjTmp, excelFileObjTmp As Object
+
     Public dbName, sFileNameNew As String
 
     Public pages() As String = New String() {"Menu", "Store", "IN", "OUT", "Tech", "AddNew"}
     Public selectedPage As String = ""
 
+    Public lampImg() As Image
+    '===================================================================================      
+    '                === Load mainForm ===
+    '===================================================================================
+    Private Sub mainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        lampImg = {My.Resources._1,
+                                  My.Resources._2,
+                                  My.Resources._3,
+                                  My.Resources._4,
+                                  My.Resources._5,
+                                  My.Resources._6,
+                                  My.Resources._7,
+                                  My.Resources._8,
+                                  My.Resources._9,
+                                  My.Resources._10,
+                                  My.Resources._11,
+                                  My.Resources._13,
+                                  My.Resources._16,
+                                  My.Resources._17,
+                                  My.Resources._18,
+                                  My.Resources._19,
+                                  My.Resources._20,
+                                  My.Resources._21}
+
+        PictureBox1.Visible = False
+
+    End Sub
     '===================================================================================      
     '                === Load button ===
     '===================================================================================
@@ -250,6 +276,9 @@ Public Class mainForm
             End If
 
         End If
+        PictureBox1.Visible = True
+        PictureBox1.Image = lampImg(lampName_cmb.SelectedIndex - 1)
+
     End Sub
     '===================================================================================
     '               === Change FIXTURE selection ===
@@ -299,6 +328,9 @@ Public Class mainForm
     '===================================================================================
     '             === CellClick on DGV ===
     '===================================================================================
+    Private Sub DGV_store_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGV_store.CellClick
+        dgv_cellClick(sender, e)
+    End Sub
 
     Private Sub DGV_in_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGV_in.CellClick
         dgv_cellClick(sender, e)
@@ -390,26 +422,9 @@ Public Class mainForm
         DGV_in.DataSource = copy_dtIN
         DGV_out.DataSource = copy_dtOUT
 
-        qty = 0
-        qty_pos = 0
-        qty_neg = 0
 
-        For i = 0 To foundRowsPos.Length - 1
-            'Console.WriteLine(foundRowsPos(i).Item(5))
-            qty_pos = qty_pos + foundRowsPos(i).Item(5)
-        Next i
 
-        Console.WriteLine(qty_pos)
-
-        For i = 0 To foundRowsNeg.Length - 1
-            qty_neg = qty_neg + foundRowsNeg(i).Item(5)
-        Next i
-
-        Console.WriteLine(qty_neg)
-
-        qty = qty_pos - qty_neg
-
-        Console.WriteLine(qty)
+        calcLamp()
 
         Save_btn.FlatStyle = FlatStyle.Standard
 
@@ -442,8 +457,26 @@ Public Class mainForm
     Private Sub clrFilterStore_brn_Click(sender As Object, e As EventArgs) Handles clrFilterStore_brn.Click
 
     End Sub
+    '===================================================================================
+    '             === Run Image form ===
+    '===================================================================================
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
 
+        imgForm.Show()
+        imgForm.PictureBox1.Image = PictureBox1.Image
 
+    End Sub
 
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        PictureBox1.Image = lampImg(4)
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        PictureBox1.Image = lampImg(8)
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        PictureBox1.Image = lampImg(12)
+    End Sub
 
 End Class

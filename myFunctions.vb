@@ -222,5 +222,45 @@
         _DGV.DataSource = copy_dt
 
     End Sub
+    '===================================================================================
+    '             === Calculate quantity selected lamps ===
+    '===================================================================================
+    Sub calcLamp()
+
+        Dim foundRowsPos() As DataRow
+        Dim foundRowsNeg() As DataRow
+        Dim currentIDLamp As String = mainForm.idLamp_txt.Text
+        Dim qty, qty_pos, qty_neg As Integer
+        Dim index As Integer = mainForm.lampName_cmb.SelectedIndex
+
+        foundRowsPos = mainForm.dtIN.Select("ID_Lamp = " & "'" & currentIDLamp & "'")
+        foundRowsNeg = mainForm.dtOUT.Select("ID_Lamp = " & "'" & currentIDLamp & "'")
+
+        qty = 0
+        qty_pos = 0
+        qty_neg = 0
+
+        For i = 0 To foundRowsPos.Length - 1
+            qty_pos = qty_pos + foundRowsPos(i).Item(5)
+        Next i
+
+        Console.WriteLine(qty_pos)
+
+        For i = 0 To foundRowsNeg.Length - 1
+            qty_neg = qty_neg + foundRowsNeg(i).Item(5)
+        Next i
+
+        Console.WriteLine(qty_neg)
+
+        qty = qty_pos - qty_neg
+
+        Console.WriteLine(qty)
+
+        mainForm.dtStore.Rows(index - 1).Item("INcoming") = qty_pos
+        mainForm.dtStore.Rows(index - 1).Item("OUTgoing") = qty_neg
+        mainForm.dtStore.Rows(index - 1).Item("Quantity") = qty
+
+
+    End Sub
 
 End Module
