@@ -63,24 +63,28 @@
     Sub selectLamp_Or_Fixture(_control_1 As Object, _control_2 As Object, _colCount As Integer, _datatable As DataTable)
 
         Dim index, i, qty As Integer
-        Dim dt As DataTable
+        Dim dt, dt_lamp, dt_fixture As DataTable
+
         dt = mainForm.dtStore
+        dt_lamp = mainForm.dtlampToFixture
+        dt_fixture = mainForm.dtfxtToLamp
+
         index = _control_1.SelectedIndex
-        Console.WriteLine(_datatable.Rows(index).Item(_colCount - 2))
-        qty = _datatable.Rows(index).Item(_colCount - 2)
+        Console.WriteLine(_datatable.Rows(index).Item(_colCount - 1))
+        qty = _datatable.Rows(index).Item(_colCount - 1)
         'MsgBox(qty)
         _control_2.Items.Clear()
         For i = 1 To qty
-            If (_datatable.Rows(index).Item(i) Is Nothing) Then
+            If (_datatable.Rows(index).Item(i + 1) Is Nothing) Then
                 Exit For
             Else
-                _control_2.Items.Add(_datatable.Rows(index).Item(i))
+                _control_2.Items.Add(_datatable.Rows(index).Item(i + 1))
             End If
         Next
 
         Try
-            _control_2.Text = _datatable.Rows(index).Item(i - 1).ToString
-            mainForm.idLamp_txt.Text = dt.Rows(index - 1).Item(2)
+            _control_2.Text = _datatable.Rows(index).Item(i).ToString
+            mainForm.idLamp_txt.Text = _datatable.Rows(index).Item(1)
         Catch ex As Exception
 
         End Try

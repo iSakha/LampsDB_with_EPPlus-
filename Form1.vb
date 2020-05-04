@@ -232,7 +232,7 @@ Public Class mainForm
             Dim dtlampToFixtureFilter() As DataRow
 
             dtlampToFixtureFilter = dtlampToFixture.Select("Lamp = " & "'" & lampName_cmb.SelectedItem & "'")
-            lampIndex = dtlampToFixtureFilter(0).Item(6).ToString
+            lampIndex = dtlampToFixtureFilter(0).Item(1).ToString
 
             'Console.WriteLine(lampIndex)
             idLamp_txt.Text = lampIndex
