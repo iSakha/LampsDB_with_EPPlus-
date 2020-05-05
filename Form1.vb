@@ -48,6 +48,7 @@ Public Class mainForm
     Public dbName, sFileNameNew As String
 
     Public pages() As String = New String() {"Menu", "Store", "IN", "OUT", "Tech", "AddNew"}
+
     Public selectedPage As String = ""
 
     Public lampImg() As Image
@@ -76,6 +77,7 @@ Public Class mainForm
 
         PictureBox1.Visible = False
         Label1.Visible = False
+        Label3.Text = ""
 
     End Sub
     '===================================================================================      
@@ -184,7 +186,6 @@ Public Class mainForm
             selectTech_btn.Enabled = True
             selectNewType_btn.Enabled = True
 
-
         End If
 
     End Sub
@@ -195,6 +196,7 @@ Public Class mainForm
         selectPage(selectStore_btn)
         tabcontrol.SelectedIndex = 1
         selectedPage = pages(1)
+        Label3.Text = "Склад"
     End Sub
     '===================================================================================      
     '                === Select INcoming page ===
@@ -203,6 +205,7 @@ Public Class mainForm
         selectPage(selectIN_btn)
         tabcontrol.SelectedIndex = 2
         selectedPage = pages(2)
+
     End Sub
     '===================================================================================      
     '                === Select OUTgoing page ===
@@ -211,6 +214,7 @@ Public Class mainForm
         selectPage(selectOUT_btn)
         tabcontrol.SelectedIndex = 3
         selectedPage = pages(3)
+        Label3.Text = "Расход"
     End Sub
     '===================================================================================      
     '                === Select Tech page ===
@@ -248,6 +252,38 @@ Public Class mainForm
         prevPage()
     End Sub
 
+    '===================================================================================      
+    '                === Page changed ===
+    '===================================================================================
+    Private Sub tabcontrol_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tabcontrol.SelectedIndexChanged
+        Select Case tabcontrol.SelectedIndex
+            Case 1
+                Label3.Text = "Склад"
+                Label3.BackColor = Color.Moccasin
+            Case 2
+                Label3.Text = "Приход"
+                Label3.BackColor = Color.Honeydew
+            Case 3
+                Label3.Text = "Расход"
+                Label3.BackColor = Color.MistyRose
+        End Select
+    End Sub
+
+    Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
+        clearControls()
+    End Sub
+    '===================================================================================      
+    '                === Next Lamp ===
+    '===================================================================================
+    Private Sub nextLamp_btn_Click(sender As Object, e As EventArgs) Handles nextLamp_btn.Click
+        nextLamp()
+    End Sub
+    '===================================================================================      
+    '                === Prev Lamp ===
+    '===================================================================================
+    Private Sub prevLamp_btn_Click(sender As Object, e As EventArgs) Handles prevLamp_btn.Click
+        prevLamp()
+    End Sub
     '===================================================================================
     '               === Change LAMP selection ===
     '===================================================================================
@@ -257,10 +293,11 @@ Public Class mainForm
         If (idLamp_txt.BackColor = Color.LightPink) Then
             Dim lampIndex As Integer
             Dim dtlampToFixtureFilter() As DataRow
-
-            dtlampToFixtureFilter = dtlampToFixture.Select("Lamp = " & "'" & lampName_cmb.SelectedItem & "'")
-            lampIndex = dtlampToFixtureFilter(0).Item(1).ToString
-
+            Try
+                dtlampToFixtureFilter = dtlampToFixture.Select("Lamp = " & "'" & lampName_cmb.SelectedItem & "'")
+                lampIndex = dtlampToFixtureFilter(0).Item(1).ToString
+            Catch
+            End Try
             'Console.WriteLine(lampIndex)
             idLamp_txt.Text = lampIndex
             idLamp_txt.BackColor = Color.White
@@ -277,8 +314,13 @@ Public Class mainForm
             End If
 
         End If
+
         PictureBox1.Visible = True
         Label1.Visible = True
+        Label2.Visible = True
+        Label4.Visible = True
+        Label6.Visible = True
+        Label8.Visible = True
 
         Try
             PictureBox1.Image = lampImg(lampName_cmb.SelectedIndex - 1)
@@ -288,6 +330,7 @@ Public Class mainForm
         Try
             lampName_lbl.Text = lampName_cmb.SelectedItem
             qty_lbl.Text = dtStore.Rows(lampName_cmb.SelectedIndex - 1).Item(8)
+            qty_txt.Text = qty_lbl.Text
             location_lbl.Text = dtStore.Rows(lampName_cmb.SelectedIndex - 1).Item(9)
             power_lbl.Text = dtStore.Rows(lampName_cmb.SelectedIndex - 1).Item(5)
             lifetime_lbl.Text = dtStore.Rows(lampName_cmb.SelectedIndex - 1).Item(4)
@@ -299,13 +342,16 @@ Public Class mainForm
     '               === Change FIXTURE selection ===
     '===================================================================================
     Private Sub fxt_cmb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles fxt_cmb.SelectedIndexChanged
+
+        Dim index As Integer
+
         If (RadioButton2.Checked) Then
             selectLamp_Or_Fixture(fxt_cmb, lampName_cmb, colCountfxtToLamp, dtfxtToLamp)
 
             If (fxt_cmb.SelectedIndex = 0) Then
                 addItemsToCombobox(lampName_cmb, rCountlampToFixture, dtlampToFixture)
             End If
-            ' In case if fixture has can use than one lamp (Sharpy in this case)
+            ' In case if fixture has can use more than one lamp (Sharpy in this case)
             If (lampName_cmb.Items.Count > 1) Then
                 idLamp_txt.Text = ""
                 idLamp_txt.BackColor = Color.LightPink
@@ -314,9 +360,33 @@ Public Class mainForm
                 MsgBox("Select lamp!")
             End If
 
+
+            Dim r As DataRow
+
+            For Each r In dtStore.Rows
+                Try
+                    If (r.Item(2) = CInt(idLamp_txt.Text)) Then
+                        index = dtStore.Rows.IndexOf(r)
+                        PictureBox1.Image = lampImg(index)
+                    End If
+                Catch
+                End Try
+            Next
         End If
 
         lampName_cmb.Enabled = True
+        hide_showLabels(False)
+        Try
+            lampName_lbl.Text = lampName_cmb.SelectedItem
+            qty_lbl.Text = dtStore.Rows(index).Item(8)
+            qty_txt.Text = qty_lbl.Text
+            location_lbl.Text = dtStore.Rows(index).Item(9)
+            power_lbl.Text = dtStore.Rows(index).Item(5)
+            lifetime_lbl.Text = dtStore.Rows(index).Item(4)
+        Catch
+            lifetime_lbl.Text = ""
+        End Try
+
     End Sub
     '===================================================================================
     '             === RadioButton select search by LAMP or by FIXTURE ===
@@ -338,6 +408,18 @@ Public Class mainForm
 
         idLamp_txt.Text = ""
         lampName_cmb.Enabled = True
+
+        hide_showLabels(True)
+
+        Select Case RadioButton1.Checked
+            Case True
+                lampName_cmb.Enabled = True
+                fxt_cmb.Enabled = False
+            Case False
+                lampName_cmb.Enabled = False
+                fxt_cmb.Enabled = True
+        End Select
+
     End Sub
 
     '===================================================================================
@@ -455,7 +537,7 @@ Public Class mainForm
         filterData(dtOUT, DGV_out)
     End Sub
     Private Sub filterStore_btn_Click(sender As Object, e As EventArgs) Handles filterStore_btn.Click
-
+        filterData(dtStore, DGV_store)
     End Sub
     '===================================================================================
     '             === CLEAR FILTER data in DB ===
@@ -470,7 +552,7 @@ Public Class mainForm
     End Sub
 
     Private Sub clrFilterStore_brn_Click(sender As Object, e As EventArgs) Handles clrFilterStore_brn.Click
-
+        DGV_store.DataSource = dtStore
     End Sub
     '===================================================================================
     '             === Run Image Form ===
@@ -482,5 +564,41 @@ Public Class mainForm
 
     End Sub
 
+    '***********************************************************************************
+
+    '      ****************          MY FUNCTIONS           ****************
+
+    '***********************************************************************************
+
+    Sub hide_showLabels(_hide As Boolean)
+
+        Select Case _hide
+
+            Case True
+
+                Me.PictureBox1.Visible = False
+                Me.Label1.Visible = False
+                Me.Label2.Visible = False
+                Me.Label4.Visible = False
+                Me.Label6.Visible = False
+                Me.Label8.Visible = False
+                Me.lampName_lbl.Text = ""
+                Me.qty_lbl.Text = ""
+                Me.location_lbl.Text = ""
+                Me.power_lbl.Text = ""
+                Me.lifetime_lbl.Text = ""
+
+            Case Else
+
+                Me.PictureBox1.Visible = True
+                Me.Label1.Visible = True
+                Me.Label2.Visible = True
+                Me.Label4.Visible = True
+                Me.Label6.Visible = True
+                Me.Label8.Visible = True
+
+        End Select
+
+    End Sub
 
 End Class

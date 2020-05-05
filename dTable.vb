@@ -203,7 +203,7 @@
 
         Dim index As Integer
         index = _e.RowIndex
-
+        Console.WriteLine(_e)
         Dim selectedRow As DataGridViewRow
         selectedRow = _sender.Rows(index)
         mainForm.selectedPage = mainForm.tabcontrol.SelectedIndex

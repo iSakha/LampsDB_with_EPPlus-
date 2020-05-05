@@ -141,8 +141,6 @@
 
         _dgv.DataSource = _dt
 
-
-
     End Sub
 
     '===================================================================================
@@ -261,6 +259,101 @@
         mainForm.dtStore.Rows(index - 1).Item("Quantity") = qty
 
 
+    End Sub
+    '===================================================================================
+    '             === Clear controls ===
+    '===================================================================================
+    Sub clearControls()
+
+        mainForm.RadioButton1.Checked = True
+        mainForm.numRecord_txt.Clear()
+        mainForm.idLamp_txt.Clear()
+        mainForm.lampName_cmb.Text = ""
+        mainForm.lampName_cmb.BackColor = Color.White
+        mainForm.pers_cmb.Text = ""
+        mainForm.location_cmb.Text = ""
+        mainForm.qty_txt.Clear()
+        mainForm.fxt_cmb.Text = ""
+        mainForm.notes1_txt.Clear()
+        mainForm.notes2_txt.Clear()
+        mainForm.hide_showLabels(True)
+
+    End Sub
+
+    '===================================================================================      
+    '                === Next Lamp ===
+    '===================================================================================
+    Sub nextLamp()
+
+        Dim index As Integer
+        Dim selectedRow As DataGridViewRow
+
+        index = mainForm.DGV_store.CurrentRow.Index
+
+        selectedRow = mainForm.DGV_store.Rows(index)
+
+        mainForm.DGV_store.ClearSelection()
+        mainForm.DGV_store.CurrentCell = mainForm.DGV_store.Item(0, index)
+        mainForm.DGV_store.Rows(index).Selected = True
+
+        If index = mainForm.DGV_store.Rows.Count - 1 Then
+            index = -1
+        End If
+        index = index + 1
+        mainForm.DGV_store.CurrentCell = mainForm.DGV_store.Item(0, index)
+        mainForm.DGV_store.Rows(index).Selected = True
+        Try
+            mainForm.numRecord_txt.Text = ""
+            mainForm.DTP.Text = ""
+            mainForm.idLamp_txt.Text = selectedRow.Cells(2).Value.ToString
+            mainForm.lampName_cmb.Text = selectedRow.Cells(0).Value.ToString
+            mainForm.location_cmb.Text = selectedRow.Cells(9).Value.ToString
+            mainForm.qty_txt.Text = ""
+            mainForm.fxt_cmb.Text = selectedRow.Cells(3).Value.ToString
+            mainForm.pers_cmb.Text = ""
+            mainForm.notes1_txt.Text = ""
+            mainForm.notes2_txt.Text = ""
+        Catch
+
+        End Try
+    End Sub
+    '===================================================================================      
+    '                === Prev Lamp ===
+    '===================================================================================
+    Sub prevLamp()
+
+        Dim index As Integer
+        Dim selectedRow As DataGridViewRow
+
+        index = mainForm.DGV_store.CurrentRow.Index
+
+        selectedRow = mainForm.DGV_store.Rows(index)
+
+        mainForm.DGV_store.ClearSelection()
+        mainForm.DGV_store.CurrentCell = mainForm.DGV_store.Item(0, index)
+        mainForm.DGV_store.Rows(index).Selected = True
+
+        If index = 0 Then
+            index = mainForm.DGV_store.Rows.Count
+        End If
+        index = index - 1
+        mainForm.DGV_store.CurrentCell = mainForm.DGV_store.Item(0, index)
+        mainForm.DGV_store.Rows(index).Selected = True
+
+        Try
+            mainForm.numRecord_txt.Text = ""
+            mainForm.DTP.Text = ""
+            mainForm.idLamp_txt.Text = selectedRow.Cells(2).Value.ToString
+            mainForm.lampName_cmb.Text = selectedRow.Cells(0).Value.ToString
+            mainForm.location_cmb.Text = selectedRow.Cells(9).Value.ToString
+            mainForm.qty_txt.Text = ""
+            mainForm.fxt_cmb.Text = selectedRow.Cells(3).Value.ToString
+            mainForm.pers_cmb.Text = ""
+            mainForm.notes1_txt.Text = ""
+            mainForm.notes2_txt.Text = ""
+        Catch
+
+        End Try
     End Sub
 
 End Module

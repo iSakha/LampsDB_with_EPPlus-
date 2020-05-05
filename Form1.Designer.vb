@@ -32,6 +32,17 @@ Partial Class mainForm
         Me.selectStore_btn = New System.Windows.Forms.Button()
         Me.loadBase_btn = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.lifetime_lbl = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.power_lbl = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.location_lbl = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.qty_lbl = New System.Windows.Forms.Label()
+        Me.lampName_lbl = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.filterStore_btn = New System.Windows.Forms.Button()
         Me.clrFilterStore_brn = New System.Windows.Forms.Button()
         Me.DGV_store = New System.Windows.Forms.DataGridView()
@@ -77,20 +88,15 @@ Partial Class mainForm
         Me.Label17 = New System.Windows.Forms.Label()
         Me.prev_btn = New System.Windows.Forms.Button()
         Me.next_btn = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.lampName_lbl = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.qty_lbl = New System.Windows.Forms.Label()
-        Me.location_lbl = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.power_lbl = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.lifetime_lbl = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.prevLamp_btn = New System.Windows.Forms.Button()
+        Me.nextLamp_btn = New System.Windows.Forms.Button()
         Me.tabcontrol.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGV_store, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
         CType(Me.DGV_in, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,7 +105,6 @@ Partial Class mainForm
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tabcontrol
@@ -235,6 +240,8 @@ Partial Class mainForm
         Me.TabPage2.Controls.Add(Me.Label2)
         Me.TabPage2.Controls.Add(Me.Label1)
         Me.TabPage2.Controls.Add(Me.PictureBox1)
+        Me.TabPage2.Controls.Add(Me.nextLamp_btn)
+        Me.TabPage2.Controls.Add(Me.prevLamp_btn)
         Me.TabPage2.Controls.Add(Me.filterStore_btn)
         Me.TabPage2.Controls.Add(Me.clrFilterStore_brn)
         Me.TabPage2.Controls.Add(Me.DGV_store)
@@ -245,6 +252,126 @@ Partial Class mainForm
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Store"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'lifetime_lbl
+        '
+        Me.lifetime_lbl.AutoSize = True
+        Me.lifetime_lbl.BackColor = System.Drawing.Color.Moccasin
+        Me.lifetime_lbl.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.lifetime_lbl.ForeColor = System.Drawing.Color.MidnightBlue
+        Me.lifetime_lbl.Location = New System.Drawing.Point(1062, 589)
+        Me.lifetime_lbl.Name = "lifetime_lbl"
+        Me.lifetime_lbl.Size = New System.Drawing.Size(0, 25)
+        Me.lifetime_lbl.TabIndex = 13
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.Label8.Location = New System.Drawing.Point(922, 589)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(144, 25)
+        Me.Label8.TabIndex = 12
+        Me.Label8.Text = "Срок службы:"
+        Me.Label8.Visible = False
+        '
+        'power_lbl
+        '
+        Me.power_lbl.AutoSize = True
+        Me.power_lbl.BackColor = System.Drawing.Color.Moccasin
+        Me.power_lbl.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.power_lbl.ForeColor = System.Drawing.Color.MidnightBlue
+        Me.power_lbl.Location = New System.Drawing.Point(1040, 552)
+        Me.power_lbl.Name = "power_lbl"
+        Me.power_lbl.Size = New System.Drawing.Size(0, 25)
+        Me.power_lbl.TabIndex = 11
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.Label6.Location = New System.Drawing.Point(922, 552)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(118, 25)
+        Me.Label6.TabIndex = 10
+        Me.Label6.Text = "Мощность:"
+        Me.Label6.Visible = False
+        '
+        'location_lbl
+        '
+        Me.location_lbl.AutoSize = True
+        Me.location_lbl.BackColor = System.Drawing.Color.Moccasin
+        Me.location_lbl.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.location_lbl.ForeColor = System.Drawing.Color.MidnightBlue
+        Me.location_lbl.Location = New System.Drawing.Point(491, 626)
+        Me.location_lbl.Name = "location_lbl"
+        Me.location_lbl.Size = New System.Drawing.Size(0, 25)
+        Me.location_lbl.TabIndex = 9
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.Label4.Location = New System.Drawing.Point(371, 626)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(114, 25)
+        Me.Label4.TabIndex = 8
+        Me.Label4.Text = "Где лежит:"
+        Me.Label4.Visible = False
+        '
+        'qty_lbl
+        '
+        Me.qty_lbl.AutoSize = True
+        Me.qty_lbl.BackColor = System.Drawing.Color.Moccasin
+        Me.qty_lbl.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.qty_lbl.ForeColor = System.Drawing.Color.MidnightBlue
+        Me.qty_lbl.Location = New System.Drawing.Point(608, 589)
+        Me.qty_lbl.Name = "qty_lbl"
+        Me.qty_lbl.Size = New System.Drawing.Size(0, 25)
+        Me.qty_lbl.TabIndex = 7
+        '
+        'lampName_lbl
+        '
+        Me.lampName_lbl.AutoSize = True
+        Me.lampName_lbl.BackColor = System.Drawing.Color.Moccasin
+        Me.lampName_lbl.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.lampName_lbl.ForeColor = System.Drawing.Color.MidnightBlue
+        Me.lampName_lbl.Location = New System.Drawing.Point(448, 552)
+        Me.lampName_lbl.Name = "lampName_lbl"
+        Me.lampName_lbl.Size = New System.Drawing.Size(0, 25)
+        Me.lampName_lbl.TabIndex = 6
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.Label2.Location = New System.Drawing.Point(371, 589)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(228, 25)
+        Me.Label2.TabIndex = 5
+        Me.Label2.Text = "Количество на складе:"
+        Me.Label2.Visible = False
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.Label1.Location = New System.Drawing.Point(371, 552)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(80, 25)
+        Me.Label1.TabIndex = 5
+        Me.Label1.Text = "Лампа:"
+        Me.Label1.Visible = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.LampDB_new.My.Resources.Resources._4
+        Me.PictureBox1.Location = New System.Drawing.Point(203, 541)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(124, 111)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 4
+        Me.PictureBox1.TabStop = False
         '
         'filterStore_btn
         '
@@ -682,131 +809,62 @@ Partial Class mainForm
         Me.next_btn.Text = ">>>"
         Me.next_btn.UseVisualStyleBackColor = True
         '
-        'PictureBox1
+        'Label3
         '
-        Me.PictureBox1.Image = Global.LampDB_new.My.Resources.Resources._4
-        Me.PictureBox1.Location = New System.Drawing.Point(203, 541)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(124, 111)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 4
-        Me.PictureBox1.TabStop = False
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Moccasin
+        Me.Label3.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Label3.Font = New System.Drawing.Font("Microsoft YaHei", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.Label3.Location = New System.Drawing.Point(880, 793)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(84, 31)
+        Me.Label3.TabIndex = 6
+        Me.Label3.Text = "Склад"
         '
-        'Label1
+        'Label5
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.Label1.Location = New System.Drawing.Point(371, 552)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(80, 25)
-        Me.Label1.TabIndex = 5
-        Me.Label1.Text = "Лампа:"
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(437, 803)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(56, 13)
+        Me.Label5.TabIndex = 56
+        Me.Label5.Text = "Prev page"
         '
-        'lampName_lbl
+        'Label7
         '
-        Me.lampName_lbl.AutoSize = True
-        Me.lampName_lbl.BackColor = System.Drawing.Color.Moccasin
-        Me.lampName_lbl.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.lampName_lbl.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.lampName_lbl.Location = New System.Drawing.Point(448, 552)
-        Me.lampName_lbl.Name = "lampName_lbl"
-        Me.lampName_lbl.Size = New System.Drawing.Size(45, 25)
-        Me.lampName_lbl.TabIndex = 6
-        Me.lampName_lbl.Text = "234"
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(694, 803)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(56, 13)
+        Me.Label7.TabIndex = 56
+        Me.Label7.Text = "Next page"
         '
-        'Label2
+        'prevLamp_btn
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.Label2.Location = New System.Drawing.Point(371, 589)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(228, 25)
-        Me.Label2.TabIndex = 5
-        Me.Label2.Text = "Количество на складе:"
+        Me.prevLamp_btn.Location = New System.Drawing.Point(23, 612)
+        Me.prevLamp_btn.Name = "prevLamp_btn"
+        Me.prevLamp_btn.Size = New System.Drawing.Size(75, 23)
+        Me.prevLamp_btn.TabIndex = 3
+        Me.prevLamp_btn.Text = "<<<"
+        Me.prevLamp_btn.UseVisualStyleBackColor = True
         '
-        'qty_lbl
+        'nextLamp_btn
         '
-        Me.qty_lbl.AutoSize = True
-        Me.qty_lbl.BackColor = System.Drawing.Color.Moccasin
-        Me.qty_lbl.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.qty_lbl.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.qty_lbl.Location = New System.Drawing.Point(608, 589)
-        Me.qty_lbl.Name = "qty_lbl"
-        Me.qty_lbl.Size = New System.Drawing.Size(45, 25)
-        Me.qty_lbl.TabIndex = 7
-        Me.qty_lbl.Text = "234"
-        '
-        'location_lbl
-        '
-        Me.location_lbl.AutoSize = True
-        Me.location_lbl.BackColor = System.Drawing.Color.Moccasin
-        Me.location_lbl.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.location_lbl.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.location_lbl.Location = New System.Drawing.Point(491, 626)
-        Me.location_lbl.Name = "location_lbl"
-        Me.location_lbl.Size = New System.Drawing.Size(45, 25)
-        Me.location_lbl.TabIndex = 9
-        Me.location_lbl.Text = "234"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.Label4.Location = New System.Drawing.Point(371, 626)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(114, 25)
-        Me.Label4.TabIndex = 8
-        Me.Label4.Text = "Где лежит:"
-        '
-        'power_lbl
-        '
-        Me.power_lbl.AutoSize = True
-        Me.power_lbl.BackColor = System.Drawing.Color.Moccasin
-        Me.power_lbl.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.power_lbl.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.power_lbl.Location = New System.Drawing.Point(1040, 552)
-        Me.power_lbl.Name = "power_lbl"
-        Me.power_lbl.Size = New System.Drawing.Size(45, 25)
-        Me.power_lbl.TabIndex = 11
-        Me.power_lbl.Text = "234"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.Label6.Location = New System.Drawing.Point(922, 552)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(118, 25)
-        Me.Label6.TabIndex = 10
-        Me.Label6.Text = "Мощность:"
-        '
-        'lifetime_lbl
-        '
-        Me.lifetime_lbl.AutoSize = True
-        Me.lifetime_lbl.BackColor = System.Drawing.Color.Moccasin
-        Me.lifetime_lbl.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.lifetime_lbl.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.lifetime_lbl.Location = New System.Drawing.Point(1062, 589)
-        Me.lifetime_lbl.Name = "lifetime_lbl"
-        Me.lifetime_lbl.Size = New System.Drawing.Size(45, 25)
-        Me.lifetime_lbl.TabIndex = 13
-        Me.lifetime_lbl.Text = "234"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.Label8.Location = New System.Drawing.Point(922, 589)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(144, 25)
-        Me.Label8.TabIndex = 12
-        Me.Label8.Text = "Срок службы:"
+        Me.nextLamp_btn.Location = New System.Drawing.Point(104, 612)
+        Me.nextLamp_btn.Name = "nextLamp_btn"
+        Me.nextLamp_btn.Size = New System.Drawing.Size(75, 23)
+        Me.nextLamp_btn.TabIndex = 3
+        Me.nextLamp_btn.Text = ">>>"
+        Me.nextLamp_btn.UseVisualStyleBackColor = True
         '
         'mainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1188, 833)
+        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.next_btn)
         Me.Controls.Add(Me.prev_btn)
         Me.Controls.Add(Me.GroupBox2)
@@ -817,6 +875,7 @@ Partial Class mainForm
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DGV_store, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
         CType(Me.DGV_in, System.ComponentModel.ISupportInitialize).EndInit()
@@ -827,8 +886,8 @@ Partial Class mainForm
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -898,4 +957,9 @@ Partial Class mainForm
     Friend WithEvents Label6 As Label
     Friend WithEvents location_lbl As Label
     Friend WithEvents Label4 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents nextLamp_btn As Button
+    Friend WithEvents prevLamp_btn As Button
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label7 As Label
 End Class
