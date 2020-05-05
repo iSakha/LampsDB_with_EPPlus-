@@ -1,21 +1,6 @@
 ﻿Module myFunctions
 
     '===================================================================================      
-    '                === Select page ===
-    '===================================================================================
-    Sub selectPage(_control As Object)
-
-        mainForm.selectStore_btn.BackColor = Color.Gainsboro
-        mainForm.selectIN_btn.BackColor = Color.Gainsboro
-        mainForm.selectOUT_btn.BackColor = Color.Gainsboro
-        mainForm.selectTech_btn.BackColor = Color.Gainsboro
-        mainForm.selectNewType_btn.BackColor = Color.Gainsboro
-
-        _control.BackColor = Color.PeachPuff
-        mainForm.GroupBox2.Visible = True
-
-    End Sub
-    '===================================================================================      
     '                === Next page ===
     '===================================================================================
     Sub nextPage()
@@ -24,7 +9,7 @@
 
         index = mainForm.tabcontrol.SelectedIndex
 
-        If index = 5 Then
+        If index = 3 Then
             index = -1
         End If
         index = index + 1
@@ -40,7 +25,7 @@
         index = mainForm.tabcontrol.SelectedIndex
 
         If index = 0 Then
-            index = 6
+            index = 4
         End If
         index = index - 1
         mainForm.tabcontrol.SelectedIndex = index

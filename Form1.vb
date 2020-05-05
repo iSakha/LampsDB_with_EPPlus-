@@ -186,6 +186,11 @@ Public Class mainForm
             selectTech_btn.Enabled = True
             selectNewType_btn.Enabled = True
 
+            Label5.Visible = True
+            Label7.Visible = True
+            prev_btn.Visible = True
+            next_btn.Visible = True
+
         End If
 
     End Sub
@@ -193,7 +198,7 @@ Public Class mainForm
     '                === Select store page ===
     '===================================================================================
     Private Sub selectStore_btn_Click(sender As Object, e As EventArgs) Handles selectStore_btn.Click
-        selectPage(selectStore_btn)
+        GroupBox2.Visible = True
         tabcontrol.SelectedIndex = 1
         selectedPage = pages(1)
         Label3.Text = "Склад"
@@ -202,7 +207,7 @@ Public Class mainForm
     '                === Select INcoming page ===
     '===================================================================================
     Private Sub selectIN_btn_Click(sender As Object, e As EventArgs) Handles selectIN_btn.Click
-        selectPage(selectIN_btn)
+        GroupBox2.Visible = True
         tabcontrol.SelectedIndex = 2
         selectedPage = pages(2)
 
@@ -211,7 +216,7 @@ Public Class mainForm
     '                === Select OUTgoing page ===
     '===================================================================================
     Private Sub selectOUT_btn_Click(sender As Object, e As EventArgs) Handles selectOUT_btn.Click
-        selectPage(selectOUT_btn)
+        GroupBox2.Visible = True
         tabcontrol.SelectedIndex = 3
         selectedPage = pages(3)
         Label3.Text = "Расход"
@@ -220,7 +225,7 @@ Public Class mainForm
     '                === Select Tech page ===
     '===================================================================================
     Private Sub selectTech_btn_Click(sender As Object, e As EventArgs) Handles selectTech_btn.Click
-        selectPage(selectTech_btn)
+        GroupBox2.Visible = True
         tabcontrol.SelectedIndex = 4
         selectedPage = pages(4)
     End Sub
@@ -228,7 +233,7 @@ Public Class mainForm
     '                === Select NewType page ===
     '===================================================================================
     Private Sub selectNewType_btn_Click(sender As Object, e As EventArgs) Handles selectNewType_btn.Click
-        selectPage(selectNewType_btn)
+        GroupBox2.Visible = True
         tabcontrol.SelectedIndex = 5
         selectedPage = pages(5)
     End Sub
@@ -236,7 +241,7 @@ Public Class mainForm
     '                === Select exit ===
     '===================================================================================
     Private Sub exit_btn_Click(sender As Object, e As EventArgs) Handles exit_btn.Click
-
+        Me.Close()
     End Sub
 
     '===================================================================================      
@@ -258,17 +263,24 @@ Public Class mainForm
     Private Sub tabcontrol_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tabcontrol.SelectedIndexChanged
         Select Case tabcontrol.SelectedIndex
             Case 1
+                Label3.Visible = True
                 Label3.Text = "Склад"
                 Label3.BackColor = Color.Moccasin
             Case 2
+                Label3.Visible = True
                 Label3.Text = "Приход"
                 Label3.BackColor = Color.Honeydew
             Case 3
+                Label3.Visible = True
                 Label3.Text = "Расход"
                 Label3.BackColor = Color.MistyRose
+            Case Else
+                Label3.Visible = False
         End Select
     End Sub
-
+    '===================================================================================      
+    '                === Clear controls ===
+    '===================================================================================
     Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
         clearControls()
     End Sub
@@ -599,6 +611,14 @@ Public Class mainForm
 
         End Select
 
+    End Sub
+
+    Private Sub pers_btn_Click(sender As Object, e As EventArgs) Handles pers_btn.Click
+        DGV_pers.DataSource = dtPersonnel
+    End Sub
+
+    Private Sub location_btn_Click(sender As Object, e As EventArgs) Handles location_btn.Click
+        DGV_location.DataSource = dtLocation
     End Sub
 
 End Class

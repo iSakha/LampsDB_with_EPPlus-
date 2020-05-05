@@ -93,6 +93,14 @@ Partial Class mainForm
         Me.Label7 = New System.Windows.Forms.Label()
         Me.prevLamp_btn = New System.Windows.Forms.Button()
         Me.nextLamp_btn = New System.Windows.Forms.Button()
+        Me.pers_btn = New System.Windows.Forms.Button()
+        Me.location_btn = New System.Windows.Forms.Button()
+        Me.btnAdd = New System.Windows.Forms.Button()
+        Me.btnUpdate = New System.Windows.Forms.Button()
+        Me.btnDelete = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
+        Me.DGV_pers = New System.Windows.Forms.DataGridView()
+        Me.DGV_location = New System.Windows.Forms.DataGridView()
         Me.tabcontrol.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -102,9 +110,12 @@ Partial Class mainForm
         CType(Me.DGV_in, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage4.SuspendLayout()
         CType(Me.DGV_out, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage5.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.DGV_pers, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DGV_location, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tabcontrol
@@ -143,7 +154,7 @@ Partial Class mainForm
         Me.exit_btn.BackColor = System.Drawing.Color.Gainsboro
         Me.exit_btn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.exit_btn.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.exit_btn.Location = New System.Drawing.Point(48, 572)
+        Me.exit_btn.Location = New System.Drawing.Point(457, 572)
         Me.exit_btn.Name = "exit_btn"
         Me.exit_btn.Size = New System.Drawing.Size(253, 49)
         Me.exit_btn.TabIndex = 9
@@ -156,7 +167,7 @@ Partial Class mainForm
         Me.selectNewType_btn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.selectNewType_btn.Enabled = False
         Me.selectNewType_btn.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.selectNewType_btn.Location = New System.Drawing.Point(48, 486)
+        Me.selectNewType_btn.Location = New System.Drawing.Point(457, 486)
         Me.selectNewType_btn.Name = "selectNewType_btn"
         Me.selectNewType_btn.Size = New System.Drawing.Size(253, 49)
         Me.selectNewType_btn.TabIndex = 9
@@ -169,7 +180,7 @@ Partial Class mainForm
         Me.selectTech_btn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.selectTech_btn.Enabled = False
         Me.selectTech_btn.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.selectTech_btn.Location = New System.Drawing.Point(48, 400)
+        Me.selectTech_btn.Location = New System.Drawing.Point(457, 400)
         Me.selectTech_btn.Name = "selectTech_btn"
         Me.selectTech_btn.Size = New System.Drawing.Size(253, 49)
         Me.selectTech_btn.TabIndex = 9
@@ -178,11 +189,11 @@ Partial Class mainForm
         '
         'selectOUT_btn
         '
-        Me.selectOUT_btn.BackColor = System.Drawing.Color.Gainsboro
+        Me.selectOUT_btn.BackColor = System.Drawing.Color.MistyRose
         Me.selectOUT_btn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.selectOUT_btn.Enabled = False
         Me.selectOUT_btn.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.selectOUT_btn.Location = New System.Drawing.Point(48, 314)
+        Me.selectOUT_btn.Location = New System.Drawing.Point(457, 314)
         Me.selectOUT_btn.Name = "selectOUT_btn"
         Me.selectOUT_btn.Size = New System.Drawing.Size(253, 49)
         Me.selectOUT_btn.TabIndex = 9
@@ -191,11 +202,11 @@ Partial Class mainForm
         '
         'selectIN_btn
         '
-        Me.selectIN_btn.BackColor = System.Drawing.Color.Gainsboro
+        Me.selectIN_btn.BackColor = System.Drawing.Color.Honeydew
         Me.selectIN_btn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.selectIN_btn.Enabled = False
         Me.selectIN_btn.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.selectIN_btn.Location = New System.Drawing.Point(48, 228)
+        Me.selectIN_btn.Location = New System.Drawing.Point(457, 228)
         Me.selectIN_btn.Name = "selectIN_btn"
         Me.selectIN_btn.Size = New System.Drawing.Size(253, 49)
         Me.selectIN_btn.TabIndex = 9
@@ -204,11 +215,11 @@ Partial Class mainForm
         '
         'selectStore_btn
         '
-        Me.selectStore_btn.BackColor = System.Drawing.Color.Gainsboro
+        Me.selectStore_btn.BackColor = System.Drawing.Color.Moccasin
         Me.selectStore_btn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.selectStore_btn.Enabled = False
         Me.selectStore_btn.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.selectStore_btn.Location = New System.Drawing.Point(48, 142)
+        Me.selectStore_btn.Location = New System.Drawing.Point(457, 142)
         Me.selectStore_btn.Name = "selectStore_btn"
         Me.selectStore_btn.Size = New System.Drawing.Size(253, 49)
         Me.selectStore_btn.TabIndex = 9
@@ -217,10 +228,10 @@ Partial Class mainForm
         '
         'loadBase_btn
         '
-        Me.loadBase_btn.BackColor = System.Drawing.Color.Gainsboro
+        Me.loadBase_btn.BackColor = System.Drawing.Color.LightBlue
         Me.loadBase_btn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.loadBase_btn.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.loadBase_btn.Location = New System.Drawing.Point(48, 56)
+        Me.loadBase_btn.Location = New System.Drawing.Point(457, 56)
         Me.loadBase_btn.Name = "loadBase_btn"
         Me.loadBase_btn.Size = New System.Drawing.Size(253, 49)
         Me.loadBase_btn.TabIndex = 9
@@ -478,11 +489,19 @@ Partial Class mainForm
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.DGV_location)
+        Me.TabPage5.Controls.Add(Me.DGV_pers)
+        Me.TabPage5.Controls.Add(Me.btnSave)
+        Me.TabPage5.Controls.Add(Me.btnDelete)
+        Me.TabPage5.Controls.Add(Me.btnUpdate)
+        Me.TabPage5.Controls.Add(Me.btnAdd)
+        Me.TabPage5.Controls.Add(Me.location_btn)
+        Me.TabPage5.Controls.Add(Me.pers_btn)
         Me.TabPage5.Location = New System.Drawing.Point(4, 22)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Size = New System.Drawing.Size(1166, 658)
         Me.TabPage5.TabIndex = 4
-        Me.TabPage5.Text = "Tech"
+        Me.TabPage5.Text = "Service"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
         'TabPage6
@@ -491,7 +510,7 @@ Partial Class mainForm
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Size = New System.Drawing.Size(1166, 658)
         Me.TabPage6.TabIndex = 5
-        Me.TabPage6.Text = "Add New"
+        Me.TabPage6.Text = "Add New Lamp"
         Me.TabPage6.UseVisualStyleBackColor = True
         '
         'OFD
@@ -799,6 +818,7 @@ Partial Class mainForm
         Me.prev_btn.TabIndex = 2
         Me.prev_btn.Text = "<<< "
         Me.prev_btn.UseVisualStyleBackColor = True
+        Me.prev_btn.Visible = False
         '
         'next_btn
         '
@@ -808,6 +828,7 @@ Partial Class mainForm
         Me.next_btn.TabIndex = 2
         Me.next_btn.Text = ">>>"
         Me.next_btn.UseVisualStyleBackColor = True
+        Me.next_btn.Visible = False
         '
         'Label3
         '
@@ -829,6 +850,7 @@ Partial Class mainForm
         Me.Label5.Size = New System.Drawing.Size(56, 13)
         Me.Label5.TabIndex = 56
         Me.Label5.Text = "Prev page"
+        Me.Label5.Visible = False
         '
         'Label7
         '
@@ -838,6 +860,7 @@ Partial Class mainForm
         Me.Label7.Size = New System.Drawing.Size(56, 13)
         Me.Label7.TabIndex = 56
         Me.Label7.Text = "Next page"
+        Me.Label7.Visible = False
         '
         'prevLamp_btn
         '
@@ -856,6 +879,76 @@ Partial Class mainForm
         Me.nextLamp_btn.TabIndex = 3
         Me.nextLamp_btn.Text = ">>>"
         Me.nextLamp_btn.UseVisualStyleBackColor = True
+        '
+        'pers_btn
+        '
+        Me.pers_btn.Location = New System.Drawing.Point(87, 203)
+        Me.pers_btn.Name = "pers_btn"
+        Me.pers_btn.Size = New System.Drawing.Size(75, 23)
+        Me.pers_btn.TabIndex = 0
+        Me.pers_btn.Text = "Personnel"
+        Me.pers_btn.UseVisualStyleBackColor = True
+        '
+        'location_btn
+        '
+        Me.location_btn.Location = New System.Drawing.Point(87, 273)
+        Me.location_btn.Name = "location_btn"
+        Me.location_btn.Size = New System.Drawing.Size(75, 23)
+        Me.location_btn.TabIndex = 0
+        Me.location_btn.Text = "Location"
+        Me.location_btn.UseVisualStyleBackColor = True
+        '
+        'btnAdd
+        '
+        Me.btnAdd.Location = New System.Drawing.Point(396, 565)
+        Me.btnAdd.Name = "btnAdd"
+        Me.btnAdd.Size = New System.Drawing.Size(75, 23)
+        Me.btnAdd.TabIndex = 0
+        Me.btnAdd.Text = "Add"
+        Me.btnAdd.UseVisualStyleBackColor = True
+        '
+        'btnUpdate
+        '
+        Me.btnUpdate.Location = New System.Drawing.Point(496, 565)
+        Me.btnUpdate.Name = "btnUpdate"
+        Me.btnUpdate.Size = New System.Drawing.Size(75, 23)
+        Me.btnUpdate.TabIndex = 0
+        Me.btnUpdate.Text = "Update"
+        Me.btnUpdate.UseVisualStyleBackColor = True
+        '
+        'btnDelete
+        '
+        Me.btnDelete.Location = New System.Drawing.Point(596, 565)
+        Me.btnDelete.Name = "btnDelete"
+        Me.btnDelete.Size = New System.Drawing.Size(75, 23)
+        Me.btnDelete.TabIndex = 0
+        Me.btnDelete.Text = "Delete"
+        Me.btnDelete.UseVisualStyleBackColor = True
+        '
+        'btnSave
+        '
+        Me.btnSave.Location = New System.Drawing.Point(696, 565)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(75, 23)
+        Me.btnSave.TabIndex = 0
+        Me.btnSave.Text = "Save"
+        Me.btnSave.UseVisualStyleBackColor = True
+        '
+        'DGV_pers
+        '
+        Me.DGV_pers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DGV_pers.Location = New System.Drawing.Point(265, 203)
+        Me.DGV_pers.Name = "DGV_pers"
+        Me.DGV_pers.Size = New System.Drawing.Size(240, 312)
+        Me.DGV_pers.TabIndex = 1
+        '
+        'DGV_location
+        '
+        Me.DGV_location.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DGV_location.Location = New System.Drawing.Point(596, 203)
+        Me.DGV_location.Name = "DGV_location"
+        Me.DGV_location.Size = New System.Drawing.Size(240, 312)
+        Me.DGV_location.TabIndex = 2
         '
         'mainForm
         '
@@ -881,11 +974,14 @@ Partial Class mainForm
         CType(Me.DGV_in, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage4.ResumeLayout(False)
         CType(Me.DGV_out, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage5.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.DGV_pers, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DGV_location, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -962,4 +1058,12 @@ Partial Class mainForm
     Friend WithEvents prevLamp_btn As Button
     Friend WithEvents Label5 As Label
     Friend WithEvents Label7 As Label
+    Friend WithEvents btnSave As Button
+    Friend WithEvents btnDelete As Button
+    Friend WithEvents btnUpdate As Button
+    Friend WithEvents btnAdd As Button
+    Friend WithEvents location_btn As Button
+    Friend WithEvents pers_btn As Button
+    Friend WithEvents DGV_location As DataGridView
+    Friend WithEvents DGV_pers As DataGridView
 End Class
